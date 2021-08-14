@@ -21,7 +21,7 @@ const docObjMod = {
 setInterval( () => { 
     let grab = parseInt(docObjMod.c.innerText)
     docObjMod.c.innerText = grab + 1
-}, 1000 )
+}, 3000 )
 // CONTINUE CALLING FUNCTION SPECIFIED until Window Closed || .clearInterval()
 // REPEATEDLY CALL FUCNTION WITH A FIXED TIME DELAY BETWEEN EACH CALL
 
@@ -60,11 +60,11 @@ function dec() {
 }
 
 // ===============================================================
-//! YOU"RE ITERATING THROUGH THE UnORDERED LIST TO FIND MATCHING 
 //! LIKE COUNTER ON TIMER NUMBER - adjust likescounter luego
 
-//! MY MATH IS WRONG ?? - 2 items on list - WHY GOD WHY
+
 //? 'heart' button CREATEs & DISPLAYs 'like' counter for current time on DOM
+/*
 docObjMod.h.addEventListener('click', () => {
     
     //MAKE A NEW LIST ITEM WE CAN CHOOSE TO USE
@@ -85,19 +85,50 @@ docObjMod.h.addEventListener('click', () => {
         if(grab !== eles[i].dataset.timerCounter){
             console.log(grab == eles[i].dataset.timerCounter)
             docObjMod.l.appendChild(newEle)
-
-
-        }
-        
-
-
+        }    
 
     }
-
-
-    
+   
     // ===============================================================
     }
 )
+*/
 
+// ===============================================================
+// LET'S TRY THIS 'LIKE' THING AGAIN
+// ===============================================================
+
+
+// CAPTURE <ul class="likes"> NODE
+// 'l'
+// CAPTURE THE TIMER COUNTER INTEGER CURRENTLY ON THE DOM
+// 'c'
+
+// ADD LISTENER TO THE HEART BUTTON
+docObjMod.h.addEventListener('click', () => {
+    //FIND CURRENT VALUE ON COUNTER
+    let grab = docObjMod.c.innerText //<=STRING
+    
+    // LOOK AT ALL OF THE <li> CHILDREN
+    // SEE IF 'data-timer-counter' WITH DOM CAPTURED # EXISTS
+    let liGrab = document.querySelector(`li[data-timer-counter="${grab}"]`) // 🔎 LOOKS LIKE: 'li[data-timer-counter="7"]
+
+    // IF IT DOESNT EXIST ON THE DOM ALREADY- MAKE A NEW NODE AND APPEND TO DOM
+    if(liGrab){
+        console.log("YAY! THIS IS FOUND TO EXIST", liGrab)
+        lc = liGrab.dataset.likesCounter
+        liGrab.innerHTML = `${grab} liked ${parseInt(lc) + 1} times!`
+    }else{
+        let newEle = document.createElement('li')
+        newEle.dataset.timerCounter = grab
+        newEle.dataset.likesCounter = "1"
+        newEle.innerHTML = `${grab} liked ${newEle.dataset.likesCounter} time!`
+        docObjMod.l.appendChild(newEle)
+    }
+})
+// ===============================================================
+// THE PROBLEM HERE : 
+// CLICKING MULTIPLE TIMES DOES NOT CHANGE THE DOM ACCURATELY
+// SOMETIMES, DATASET LIKE COUNTER & TEMPLATE LITERAL ON DOM DOESNT MATCH
+//                        W  H  Y ? ? ? ? 
 // ===============================================================
