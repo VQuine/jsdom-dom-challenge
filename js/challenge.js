@@ -71,28 +71,24 @@ docObjMod.h.addEventListener('click', () => {
     let newEle = document.createElement('li')    
     let grab = docObjMod.c.innerText //TIMER ON DOM
     newEle.dataset.timerCounter = grab //ATTRIBUTE = TIMER ON DOM
-    let lc = newEle.dataset.likesCounter = 1 //ANOTHER ATTRIBUTE
-    newEle.innerText = `${grab} liked ${lc} times`
+    // let lc = newEle.dataset.likesCounter = 1 //ANOTHER ATTRIBUTE
+    newEle.innerText = `${grab} liked ${lc = 1} times`
 
     // CREATE ARRAY CONTAINING ALL LIST ITEMS EXISTING ON DOM
     const eles = document.getElementsByTagName('li')
 
     // LOOP THROUGH ENTIRE ARRAY'S LENGTH
-    for (let i = 0; i < eles.length; ++i) {
-        
-        //IF THIS LIST ITEM's TIMERCOUNTER == TIMER COUNTER ON DOM
-        if ( parseInt(eles[i].dataset.timerCounter) == parseInt(grab) ) {
-            
+    for (let i = 0; i <= eles.length; i++) {
+        console.log(`DOM COUNTER: ${grab}`, `DATA COUNTER: ${eles[i].dataset.timerCounter}`)
+        console.log(grab, eles[i].dataset.timerCounter)
 
-            console.log("LIST ITEM EXISTS ON DOM", grab, eles[i].dataset.timerCounter)
-            break
-
-        } else {
-            
-            console.log("no iteration match", grab, eles[i].dataset.timerCounter)
+        if(grab !== eles[i].dataset.timerCounter){
+            console.log(grab == eles[i].dataset.timerCounter)
             docObjMod.l.appendChild(newEle)
-            break
+
+
         }
+        
 
 
 
